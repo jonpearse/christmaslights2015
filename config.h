@@ -9,7 +9,7 @@ CRGB gPrimaryColours[] = {
 	CRGB::Magenta
 };
 
-#define NUM_PRIMARY_COLOURS 6
+#define NUM_PRIMARY_COLOURS (sizeof(gPrimaryColours)/sizeof(CRGB))
 
 void fill_every(struct CRGB * leds, int numToFill, int interval, int offset, const struct CRGB& colour)
 {

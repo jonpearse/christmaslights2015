@@ -1,0 +1,49 @@
+h1. Jon’s 2015 Christmas Lights
+
+_… Various friends have, at several points in the past, accused me of having a mild LED obsession. A recent stock-check through my parts bin suggests they may have a point_…
+
+…
+
+I might be a little bit obsessed by light and colour, and as such tend to find off-the-shelf light strings to be a little… lacking—I’m not a huge fan of any of the multicoloured strings I’ve seen, and in all cases the patterns tend to be a little bit limited.
+As much as I love dynamic lights, I tend to stick with plain white static lights. They’re boring, but tend to be the least offensive of the lot.
+
+This year, I was feeling a little bit under the weather, and thus was looking for a quick project that was [a] fun, and [b] didn’t include building yet another website. A quick look at my parts bin turned up a couple of "WS2801":http://www.world-semi.com/en/Driver/Lighting_LED_driver_chip/WS2801/ -based LED strings, and it’s Christmas so…
+
+h2. The result
+
+This is a _very_ quick and dirty set of Arduino-powered LED Christmas lights. I’ve written it to work with WS2801 chips because that’s what I had laying around, but as it’s built on the excellent "FastLED":http://fastled.io/ library, it should work with any "supported chipset":https://github.com/FastLED/FastLED/wiki/Overview#supported-chipsets .
+
+Like most multifunction light strings, it has a number of patterns which can be scrolled through by clicking a button (connected between pin @P_BUTTON@ and +5V). In order, these are:
+
+* *null*: turns the string off
+* *sparkle_mono*: a simple pattern of random LEDs turning on white, then fading back off
+* *sparkle_colour*: as sparkle_mono, only with multiple colours
+* *chase_mono*: old school 2-on/2-off white chasing pattern (slightly buggy)
+* *chase*: as chase_mono, but with four static colours (again, slightly buggy)
+* *random_colours*: randomly displays multiple colours across the entire string
+* *rainbow*: cycles through the rainbow, with a white ‘glitter’ effect
+
+In the case of *sparkle_colour* and *random_colours*, colours are defined by the @gPrimaryColours@ array in @config.h@
+
+h2. How to…
+
+You’ll need the "FastLED":http://fastled.io library. Otherwise, clone this repo, and load it in the Arduino IDE.
+
+Depending on your setup, you may need to change a few of the @#define@ lines at the top of the main INO file. You’ll also need to connect a push-to-make button between +5V and whatever pin you have @P_BUTTON@ set to.
+
+The code currently assumes you’re using an SPI-compatible chipset, rather than "bit-banging":https://en.wikipedia.org/wiki/Bit_banging data to your LEDs: take a look at the "FastLED documentation":https://github.com/FastLED/FastLED/wiki/SPI-Hardware-or-Bit-banging for more information on what this means, and which pins to connect the LED string to.
+
+Finally, burn the sketch to your board, press the button, and "watschen der blinkenlichten":https://en.wikipedia.org/wiki/Blinkenlights
+
+
+h2. Notes
+
+I’ve tested this on an Arduino Uno (R2) and Teensy 2.0 board, and it seems to work OK. In theory, it _should_ work with any Arduino-compatible board, or indeed, any chip you can burn the Arduino bootloader onto (in fact, it strikes me the ATTiny would be a brilliant chip for this purpose)… but as always, your mileage may vary. Especially if you’re buying cheap chinese clones from eBay.
+
+I’ve only tested this with a WS2801… like I say, it _should_ work with any supported chipset, but again that’ll depend on your board, LEDs, soldering (if required) and power supply.
+
+In any case, don’t contact me for support. I am not really a C/C++ dev, so I probably can’t help you.
+
+…
+
+Share and enjoy…

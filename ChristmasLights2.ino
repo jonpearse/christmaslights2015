@@ -2,14 +2,14 @@
 #include "config.h"
 
 // basic setup
-#define LED_TYPE	WS2801
-#define LED_ORDER	RGB
-#define NUM_LEDs	100
+#define LED_TYPE	WS2801		// which chipset you’re using—see FastLED docs for options
+#define LED_ORDER	RGB			// colour order
+#define NUM_LEDs	100			// number of LEDs in the string
 #define BRIGHTNESS 	96
 
-#define P_BUTTON	21
+#define P_BUTTON	21			// which (input) PIN the button is connected to
 
-#define FPS			120
+#define FPS			120			// animation FPS (best effort!)
 
 // local variables
 CRGB leds[NUM_LEDs];
